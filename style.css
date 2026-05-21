@@ -1,0 +1,56 @@
+/* Zero out default margins */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+}
+
+/* Fixed left sidebar */
+.sidebar {
+    width: 200px;
+    position: fixed;
+    height: 100vh;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.sidebar h1 {
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 15px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #000;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.sidebar a.active {
+    font-weight: bold;
+}
+
+/* Scrolling right content pane */
+.content {
+    margin-left: 230px;
+    padding: 30px;
+    width: 100%;
+}
+
+.gallery-grid img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 40px; /* Forces vertical stacking like Hido's site */
+}    
+
