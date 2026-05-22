@@ -4,6 +4,45 @@
     <meta charset="UTF-8">
     <title>Vineet Mathur</title>
     <link rel="stylesheet" href="style.css">
+<style>
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 92vw;
+    max-height: 92vh;
+    object-fit: contain;
+  }
+  .lightbox-close {
+    position: fixed;
+    top: 1.5rem; right: 2rem;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    font-family: sans-serif;
+    line-height: 1;
+  }
+  .lightbox-prev, .lightbox-next {
+    position: fixed;
+    top: 50%; transform: translateY(-50%);
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 1rem;
+    user-select: none;
+  }
+  .lightbox-prev { left: 1rem; }
+  .lightbox-next { right: 1rem; }
+  body img { cursor: zoom-in; }
+</style>
 </head>
 <body>
     <!-- Simple Sidebar Navigation -->
