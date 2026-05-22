@@ -88,6 +88,47 @@
             <img src="india_tyre_boy.jpg" alt="">
         </div>
     </main>
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" onclick="closeLightbox()">×</span>
+  <span class="lightbox-prev" onclick="navigate(-1)">&#8592;</span>
+  <img id="lightbox-img" src="" alt="">
+  <span class="lightbox-next" onclick="navigate(1)">&#8594;</span>
+</div>
+
+<script>
+  const imgs = Array.from(document.querySelectorAll('img:not(#lightbox-img)'));
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  let cur = 0;
+
+  imgs.forEach((img, i) => {
+    img.addEventListener('click', () => {
+      cur = i;
+      lbImg.src = img.src;
+      lb.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLightbox() {
+    lb.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function navigate(dir) {
+    cur = (cur + dir + imgs.length) % imgs.length;
+    lbImg.src = imgs[cur].src;
+  }
+
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') navigate(1);
+    if (e.key === 'ArrowLeft') navigate(-1);
+  });
+</script>
 </body>
 </html>
 
