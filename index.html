@@ -5,130 +5,118 @@
     <title>Vineet Mathur</title>
     <link rel="stylesheet" href="style.css">
 <style>
-  .lightbox {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.95);
-    z-index: 9999;
+  .slideshow {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
     align-items: center;
     justify-content: center;
-    cursor: zoom-out;
   }
-  .lightbox.active { display: flex; }
-  .lightbox img {
-    max-width: 92vw;
-    max-height: 92vh;
+  .slide {
+    display: none;
+    max-width: 100%;
+    max-height: 80vh;
     object-fit: contain;
+    cursor: default;
   }
-  .lightbox-close {
-    position: fixed;
-    top: 1.5rem; right: 2rem;
+  .slide.active { display: block; }
+  .nav-prev, .nav-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
     color: #fff;
     font-size: 2rem;
     cursor: pointer;
-    font-family: sans-serif;
+    opacity: 0.3;
+    padding: 1rem;
+    transition: opacity 0.2s;
+    z-index: 10;
     line-height: 1;
   }
-  .lightbox-prev, .lightbox-next {
-    position: fixed;
-    top: 50%; transform: translateY(-50%);
-    color: #fff;
-    font-size: 2rem;
-    cursor: pointer;
-    padding: 1rem;
-    user-select: none;
+  .nav-prev:hover, .nav-next:hover { opacity: 1; }
+  .nav-prev { left: 0; }
+  .nav-next { right: 0; }
+  .counter {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
+    color: #888;
+    letter-spacing: 0.1em;
+    font-family: Georgia, serif;
   }
-  .lightbox-prev { left: 1rem; }
-  .lightbox-next { right: 1rem; }
-  body img { cursor: zoom-in; }
 </style>
 </head>
 <body>
-    <!-- Simple Sidebar Navigation -->
     <nav class="sidebar">
         <h1>VINEET MATHUR</h1>
         <ul>
-            <!-- <li><a href="landscapes.html" class="active">LANDSCAPES</a></li>-->
-            <!-- <li><a href="portraits.html">PORTRAITS</a></li>-->
-            <!-- <li><a href="books.html">BOOKS</a></li>-->
             <li><a href="mailto:shutterbug70@gmail.com">shutterbug70@gmail.com</a></li>
-            <!-- <li><a href="info.html">INFO / CONTACT</a></li>-->
         </ul>
     </nav>
 
-    <!-- Main Image Display Area -->
     <main class="content">
-        <div class="gallery-grid">
-            <img src="beach_football.jpg" alt="">
-            <img src="india_beach.jpg" alt="">
-            <img src="jetty.jpg" alt="">
-            <img src="L1009656.jpg" alt="">
-            <img src="misty_cove.jpg" alt="">
-            <img src="ocean_beach_sunset.jpg" alt="">
-            <img src="yosemite_couple.jpg" alt="">
-            <img src="fisherman.jpg" alt="">
-            <img src="foggy_path.jpg" alt="">
-            <img src="silicon_valley_hilltop.jpg" alt="">
-            <img src="forest_figures.jpg" alt="">
-            <img src="headland_silhouette.jpg" alt="">
-            <img src="oak_tunnel.jpg" alt="">
-            <img src="oak_arch_cathedral.jpg" alt="">
-            <img src="child_valley_path.jpg" alt="">
-            <img src="blue_ponchos_alpine.jpg" alt="">
-            <img src="figure_arms_raised.jpg" alt="">
-            <img src="photographer_on_rocks.jpg" alt="">
-            <img src="sunset.jpeg" alt="">
-            <img src="moore_sculpture.jpg" alt="">
-            <img src="shadow_man_bw.jpg" alt="">
-            <img src="dunne.jpeg" alt="">
-            <img src="atm_women_sf.jpg" alt="">
-            <img src="liqui.jpeg" alt="">
-            <img src="covid_masks_chinatown.jpg" alt="">
-            <img src="india_tyre_boy.jpg" alt="">
+        <div class="slideshow">
+            <button class="nav-prev" onclick="showSlide(cur-1)">&#8592;</button>
+
+            <img src="beach_football.jpg" alt="" class="slide active">
+            <img src="india_beach.jpg" alt="" class="slide">
+            <img src="jetty.jpg" alt="" class="slide">
+            <img src="L1009656.jpg" alt="" class="slide">
+            <img src="misty_cove.jpg" alt="" class="slide">
+            <img src="ocean_beach_sunset.jpg" alt="" class="slide">
+            <img src="yosemite_couple.jpg" alt="" class="slide">
+            <img src="fisherman.jpg" alt="" class="slide">
+            <img src="foggy_path.jpg" alt="" class="slide">
+            <img src="silicon_valley_hilltop.jpg" alt="" class="slide">
+            <img src="forest_figures.jpg" alt="" class="slide">
+            <img src="headland_silhouette.jpg" alt="" class="slide">
+            <img src="oak_tunnel.jpg" alt="" class="slide">
+            <img src="oak_arch_cathedral.jpg" alt="" class="slide">
+            <img src="child_valley_path.jpg" alt="" class="slide">
+            <img src="blue_ponchos_alpine.jpg" alt="" class="slide">
+            <img src="figure_arms_raised.jpg" alt="" class="slide">
+            <img src="photographer_on_rocks.jpg" alt="" class="slide">
+            <img src="sunset.jpeg" alt="" class="slide">
+            <img src="moore_sculpture.jpg" alt="" class="slide">
+            <img src="shadow_man_bw.jpg" alt="" class="slide">
+            <img src="dunne.jpeg" alt="" class="slide">
+            <img src="atm_women_sf.jpg" alt="" class="slide">
+            <img src="liqui.jpeg" alt="" class="slide">
+            <img src="covid_masks_chinatown.jpg" alt="" class="slide">
+            <img src="india_tyre_boy.jpg" alt="" class="slide">
+
+            <button class="nav-next" onclick="showSlide(cur+1)">&#8594;</button>
+            <span class="counter" id="counter">1 / 26</span>
         </div>
     </main>
-<div class="lightbox" id="lightbox">
-  <span class="lightbox-close" onclick="closeLightbox()">×</span>
-  <span class="lightbox-prev" onclick="navigate(-1)">&#8592;</span>
-  <img id="lightbox-img" src="" alt="">
-  <span class="lightbox-next" onclick="navigate(1)">&#8594;</span>
-</div>
 
 <script>
-  const imgs = Array.from(document.querySelectorAll('img:not(#lightbox-img)'));
-  const lb = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lightbox-img');
+  const slides = document.querySelectorAll('.slide');
   let cur = 0;
 
-  imgs.forEach((img, i) => {
-    img.addEventListener('click', () => {
-      cur = i;
-      lbImg.src = img.src;
-      lb.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-  });
-
-  function closeLightbox() {
-    lb.classList.remove('active');
-    document.body.style.overflow = '';
+  function showSlide(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('counter').textContent = (cur + 1) + ' / ' + slides.length;
   }
-
-  function navigate(dir) {
-    cur = (cur + dir + imgs.length) % imgs.length;
-    lbImg.src = imgs[cur].src;
-  }
-
-  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
 
   document.addEventListener('keydown', e => {
-    if (!lb.classList.contains('active')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowRight') navigate(1);
-    if (e.key === 'ArrowLeft') navigate(-1);
+    if (e.key === 'ArrowRight') showSlide(cur + 1);
+    if (e.key === 'ArrowLeft') showSlide(cur - 1);
+  });
+
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
+  document.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) showSlide(diff > 0 ? cur + 1 : cur - 1);
   });
 </script>
 </body>
 </html>
-
