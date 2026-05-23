@@ -8,32 +8,32 @@
   .slideshow {
     position: relative;
     width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 80vh;
   }
   .slide {
     display: none;
-    max-width: 100%;
+    max-width: calc(100% - 80px);
     max-height: 80vh;
     object-fit: contain;
-    cursor: default;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   .slide.active { display: block; }
   .nav-prev, .nav-next {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: none;
-    border: none;
     color: #fff;
-    font-size: 2rem;
+    font-size: 2.5rem;
     cursor: pointer;
-    opacity: 0.3;
-    padding: 1rem;
-    transition: opacity 0.2s;
-    z-index: 10;
+    opacity: 0.5;
+    padding: 0.5rem 1rem;
+    z-index: 100;
+    user-select: none;
+    -webkit-user-select: none;
+    text-decoration: none;
     line-height: 1;
   }
   .nav-prev:hover, .nav-next:hover { opacity: 1; }
@@ -41,13 +41,14 @@
   .nav-next { right: 0; }
   .counter {
     position: absolute;
-    bottom: 1rem;
+    bottom: -2rem;
     left: 50%;
     transform: translateX(-50%);
     font-size: 0.75rem;
     color: #888;
     letter-spacing: 0.1em;
     font-family: Georgia, serif;
+    white-space: nowrap;
   }
 </style>
 </head>
@@ -61,7 +62,7 @@
 
     <main class="content">
         <div class="slideshow">
-            <button class="nav-prev" onclick="showSlide(cur-1)">&#8592;</button>
+            <a class="nav-prev" onclick="showSlide(cur-1)">&#8592;</a>
 
             <img src="beach_football.jpg" alt="" class="slide active">
             <img src="india_beach.jpg" alt="" class="slide">
@@ -90,7 +91,7 @@
             <img src="covid_masks_chinatown.jpg" alt="" class="slide">
             <img src="india_tyre_boy.jpg" alt="" class="slide">
 
-            <button class="nav-next" onclick="showSlide(cur+1)">&#8594;</button>
+            <a class="nav-next" onclick="showSlide(cur+1)">&#8594;</a>
             <span class="counter" id="counter">1 / 26</span>
         </div>
     </main>
