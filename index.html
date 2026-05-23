@@ -12,7 +12,7 @@
   }
   .slide {
     display: none;
-    max-width: calc(100% - 80px);
+    max-width: calc(100% - 120px);
     max-height: 80vh;
     object-fit: contain;
     position: absolute;
@@ -37,18 +37,16 @@
     line-height: 1;
   }
   .nav-prev:hover, .nav-next:hover { opacity: 1; }
-  .nav-prev { left: 0; }
-  .nav-next { right: 0; }
+  .nav-prev { left: 10px; }
+  .nav-next { right: 10px; }
   .counter {
-    position: absolute;
-    bottom: -2rem;
-    left: 50%;
-    transform: translateX(-50%);
+    margin-top: 1rem;
+    display: block;
+    text-align: center;
     font-size: 0.75rem;
     color: #888;
     letter-spacing: 0.1em;
     font-family: Georgia, serif;
-    white-space: nowrap;
   }
 </style>
 </head>
@@ -92,8 +90,8 @@
             <img src="india_tyre_boy.jpg" alt="" class="slide">
 
             <a class="nav-next" onclick="showSlide(cur+1)">&#8594;</a>
-            <span class="counter" id="counter">1 / 26</span>
         </div>
+        <span class="counter" id="counter">1 / 26</span>
     </main>
 
 <script>
